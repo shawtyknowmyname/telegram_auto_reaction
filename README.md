@@ -1,4 +1,11 @@
 # 🤡 Telegram Auto Reaction
+
+[![Top Language](https://img.shields.io/github/languages/top/shawtyknowmyname/telegram_auto_reaction)](https://github.com/shawtyknowmyname/telegram_auto_reaction)
+[![License](https://img.shields.io/github/license/shawtyknowmyname/telegram_auto_reaction)](https://github.com/shawtyknowmyname/telegram_auto_reaction/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/shawtyknowmyname/telegram_auto_reaction)](https://github.com/shawtyknowmyname/telegram_auto_reaction/stargazers)
+[![Downloads](https://img.shields.io/github/downloads/shawtyknowmyname/telegram_auto_reaction/total)](https://github.com/shawtyknowmyname/telegram_auto_reaction/releases)
+[![Issues](https://img.shields.io/github/issues/shawtyknowmyname/telegram_auto_reaction)](https://github.com/shawtyknowmyname/telegram_auto_reaction/issues)
+
 ## Если вы посчитаете этот проект полезным — поставьте :star: этому репо
 
 **Telegram Auto Reaction** — это десктопное Python-приложение с графическим интерфейсом (PyQt5), которое автоматически ставит реакции (эмодзи) на входящие сообщения в Telegram от вашего имени. Оно использует [Pyrogram](https://docs.pyrogram.org/) и [Telegram API](https://core.telegram.org/api) для работы.
