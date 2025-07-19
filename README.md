@@ -106,4 +106,4 @@ auto-reaction/
 
 ## 📜 Лицензия
 
-MIT License.
+[MIT License](https://github.com/shawtyknowmyname/telegram_auto_reaction/blob/main/LICENSE).
