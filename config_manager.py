@@ -23,6 +23,7 @@ class ConfigManager:
         self.react_group_mode: str = "all" # 'all' or 'specific'
         self.allowed_group_users: List[Union[int, str]] = []
 
+        self.react_to_self_in_pm: bool = False
         self.react_to_self_in_groups: bool = False
 
         self.default_reaction: str = "🤡"
@@ -38,6 +39,8 @@ class ConfigManager:
         self.react_pm_mode = "all" if input("[1] Все / [2] Только определенные: ").strip() == "1" else "specific"
         if self.react_pm_mode == "specific":
             self.allowed_pm_users = [s.strip() for s in input("Usernames через запятую: ").split(",")]
+
+        self.react_to_self_in_pm = input("Реагировать на свои сообщения в ЛС? (y/N): ").strip().lower() == "y"
 
         print("\n=== Настройки групп ===")
         self.react_group_mode = "all" if input("[1] Все / [2] Только определенные: ").strip() == "1" else "specific"
@@ -65,6 +68,7 @@ class ConfigManager:
                 "react_group_mode": self.react_group_mode,
                 "allowed_group_users": self.allowed_group_users,
                 "default_reaction": self.default_reaction,
+                "react_to_self_in_pm": self.react_to_self_in_pm,
                 "react_to_self_in_groups": self.react_to_self_in_groups
             }, f, indent=4, ensure_ascii=False)
 
@@ -83,6 +87,7 @@ class ConfigManager:
         self.react_group_mode = data.get("react_group_mode", "all")
         self.allowed_group_users = data.get("allowed_group_users", [])
         self.default_reaction = data.get("default_reaction", "🤡")
+        self.react_to_self_in_pm = data.get("react_to_self_in_pm", False)
         self.react_to_self_in_groups = data.get("react_to_self_in_groups", False)
 
         with open(self.reactions_path, "r", encoding="utf-8") as f:

@@ -44,6 +44,7 @@ class ReactorThread(QThread):
                 print(f"➡️ Кастомные реакции: {self.cfg.custom_reactions}")
                 print(f"➡️ Разрешены в ЛС: {'все' if self.cfg.react_pm_mode == 'all' else self.cfg.allowed_pm_users}")
                 print(f"➡️ Разрешены в группах: {'все' if self.cfg.react_group_mode == 'all' else self.cfg.allowed_group_users}")
+                print(f"➡️ Реагировать на себя в ЛС: {self.cfg.react_to_self_in_pm}")
                 print(f"➡️ Реагировать на себя в группах: {self.cfg.react_to_self_in_groups}")
 
                 allowed_pm_users = [u.lower() for u in self.cfg.allowed_pm_users]
@@ -59,9 +60,13 @@ class ReactorThread(QThread):
                     chat_type = getattr(message.chat, "type", None)
                     is_private = chat_type == ChatType.PRIVATE
 
-                    if not is_private and sender.is_self and not self.cfg.react_to_self_in_groups:
-                        print("[DEBUG] Пропущено своё сообщение в группе")
-                        return
+                    if sender.is_self:
+                        if is_private and not self.cfg.react_to_self_in_pm:
+                            print("[DEBUG] Пропущено своё сообщение в ЛС")
+                            return
+                        if not is_private and not self.cfg.react_to_self_in_groups:
+                            print("[DEBUG] Пропущено своё сообщение в группе")
+                            return
 
                     allowed_pm = self.cfg.react_pm_mode == "all" or username in allowed_pm_users
                     allowed_group = self.cfg.react_group_mode == "all" or username in allowed_group_users

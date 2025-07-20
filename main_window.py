@@ -42,9 +42,12 @@ class MainWindow(QWidget):
         self.pm_users = QLineEdit()
         self.pm_users.setPlaceholderText("username, username2")
 
+        self.react_self_pm_checkbox = QCheckBox("Ставить реакции на свои сообщения в ЛС")
+
         layout.addWidget(self.pm_all)
         layout.addWidget(self.pm_spec)
         layout.addWidget(self.pm_users)
+        layout.addWidget(self.react_self_pm_checkbox)
 
         layout.addWidget(QLabel("Настройки групп:"))
         self.grp_all = QRadioButton("Реагировать в группах на всех")
@@ -100,6 +103,7 @@ class MainWindow(QWidget):
             self.grp_spec.setChecked(True)
             self.grp_users.setText(", ".join(self.cfg.allowed_group_users))
 
+        self.react_self_pm_checkbox.setChecked(self.cfg.react_to_self_in_pm)
         self.react_self_checkbox.setChecked(self.cfg.react_to_self_in_groups)
 
         self.reaction_combo.setCurrentText(self.cfg.default_reaction)
@@ -115,6 +119,7 @@ class MainWindow(QWidget):
         self.cfg.react_group_mode = "all" if self.grp_all.isChecked() else "specific"
         self.cfg.allowed_group_users = [u.strip() for u in self.grp_users.text().split(",") if u.strip()]
 
+        self.cfg.react_to_self_in_pm = self.react_self_pm_checkbox.isChecked()
         self.cfg.react_to_self_in_groups = self.react_self_checkbox.isChecked()
 
         selected = self.reaction_combo.currentText()
