@@ -109,6 +109,7 @@ telegram_auto_reaction/
 ├── main_window.py        # основное окно с настройками
 ├── reactor_thread.py     # Telegram-клиент с логикой реакций
 ├── requirements.txt      # зависимости
+├── LICENSE               # Лицензия
 └── README.md             # этот файл
 ```
 
